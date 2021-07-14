@@ -21,8 +21,14 @@ namespace TrIpsNew.Controllers
         }
         [HttpGet("[action]")]
         public IActionResult GetTrips(){
-            var allTrips = _service.GetAllTrips();
-            return Ok(allTrips);
+            try{
+                //throw new Exception();
+                var allTrips = _service.GetAllTrips();
+                return Ok(allTrips);
+            }
+            catch(Exception ex){
+                return BadRequest(ex.Message);
+            }
         }
         [HttpGet("SingleTrip/{id}")]
         public IActionResult GetTripById(int id){
